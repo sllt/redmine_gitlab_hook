@@ -88,12 +88,12 @@ class GitlabHookController < SysController
 
 
   def get_repository_name
-    return params[:repository_name] && params[:repository_name].downcase
+    return params[:project][:name] && params[:project][:name].downcase
   end
 
 
   def get_repository_namespace
-    return params[:repository_namespace] && params[:repository_namespace].downcase
+    return params[:project][:namespace] && params[:project][:namespace].downcase
   end
 
 
@@ -151,7 +151,7 @@ class GitlabHookController < SysController
     raise TypeError, 'Local repository path is not set' unless Setting.plugin_redmine_gitlab_hook['local_repositories_path'].to_s.present?
 
     identifier = get_repository_identifier
-    remote_url = params[:repository_git_url]
+    remote_url = params[:repository][:git_http_url]
     prefix = Setting.plugin_redmine_gitlab_hook['git_command_prefix'].to_s
 
     raise TypeError, 'Remote repository URL is null' unless remote_url.present?
