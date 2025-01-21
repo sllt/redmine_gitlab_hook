@@ -162,7 +162,7 @@ class GitlabHookController < SysController
     local_url = File.join(local_root_path, repo_namespace, repo_name)
     git_file = File.join(local_url, 'HEAD')
 
-    unless File.exists?(git_file)
+    unless File.exist?(git_file)
       FileUtils.mkdir_p(local_url)
       command = clone_repository(prefix, remote_url, local_url)
       unless exec(command)
