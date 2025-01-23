@@ -65,7 +65,7 @@ class GitlabHookController < SysController
 
 
   def clone_repository(prefix, remote_url, local_url)
-    "#{prefix} " + GIT_BIN + " clone --mirror #{remote_url} #{local_url}"
+    "#{prefix} " + GIT_BIN + " clone --bare #{remote_url} #{local_url}"
   end
 
 
